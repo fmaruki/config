@@ -5,26 +5,55 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle, required
+" plugin manager, like pathogen
 Plugin 'gmarik/Vundle.vim'
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
+" search script, like grep, used by other plugins
 Plugin 'mileszs/ack.vim'
+
+" easy way to find files, buffers, lines
 Plugin 'kien/ctrlp.vim'
+
+" auto-closes parentheses and quotes
 Plugin 'Raimondi/delimitMate'
+
+" autocomplete for javascript with context
 Plugin 'marijnh/tern_for_vim'
+
+" comments shortcut (gcc)
 Plugin 'ope/vim-commentary'
+
+" (dd) don't yank, creates a yank buffer, use ]y [y
 Plugin 'svermeulen/vim-easyclip'
+
+" show git diff in side-ruler
 Plugin 'airblade/vim-gitgutter'
+
+" (C-A-f) to beautify javascript
 Plugin 'maksimr/vim-jsbeautify'
+
+" better visualization for json
 Plugin 'elzr/vim-json'
+
+" (C-n) for multiple cursors
 Plugin 'terryma/vim-multiple-cursors'
+
+" requirement for some plugins
 Plugin 'Shougo/vimproc.vim'
+
+" shows trailing whitespace, :FixWhitespace for cleaning
 Plugin 'bronson/vim-trailing-whitespace'
+
+" auto-complete, with docs for python (jedi)
 Plugin 'Valloric/YouCompleteMe'
+
+" find in files
 Plugin 'dyng/ctrlsf.vim'
+
+" requirement for vim-notes
 Plugin 'xolox/vim-misc'
+
+" organize notes (:Note), search with :RecentNotes
 Plugin 'xolox/vim-notes'
 
 " All of your Plugins must be added before the following line
@@ -38,30 +67,41 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
+
 " Put your non-Plugin stuff after this line
 
 
 " enable mouse in all modes
 set mouse=a
+
+" show line-numbers ruler
 set number
+
+" always show 3 lines above and below
 set scrolloff=3
+
+" tab config
 set tabstop=4
 set shiftwidth=4
 set expandtab
+
+" use system clipboard
 set clipboard=unnamedplus
+
+" don't need to save when chage buffer
 set hidden
+
+" incremental search, with optional case
 set ignorecase
 set smartcase
 set incsearch
 
-" execute pathogen#infect()
-" syntax on
-" filetype plugin indent on
+" change buffer shortcut
+nmap <C-Left> :bp<CR>
+nmap <C-Right> :bn<CR>
 
 
-" js-beautify
+" js-beautify key-bindings
 autocmd FileType javascript noremap <buffer>  <c-a-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-a-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-a-f> :call CssBeautify()<cr>
@@ -85,6 +125,3 @@ nnoremap <space>/ :CtrlPLine<CR>
 " ctrl-s-f
 nmap <C-F> <Plug>CtrlSFPrompt
 vmap <C-F> <Plug>CtrlSFVwordPath
-
-nmap <C-Left> :bp<CR>
-nmap <C-Right> :bn<CR>
