@@ -23,8 +23,8 @@ Plugin 'marijnh/tern_for_vim'
 " comments shortcut (gcc)
 Plugin 'ope/vim-commentary'
 
-" (dd) don't yank, creates a yank buffer, use ]y [y
-Plugin 'svermeulen/vim-easyclip'
+" creates an yank ring (A-p/A-P), not obstrusive as easyClip
+Plugin 'maxbrunsfeld/vim-yankstack'
 
 " show git diff in side-ruler
 Plugin 'airblade/vim-gitgutter'
@@ -34,9 +34,6 @@ Plugin 'maksimr/vim-jsbeautify'
 
 " better visualization for json
 Plugin 'elzr/vim-json'
-
-" (C-n) for multiple cursors
-Plugin 'terryma/vim-multiple-cursors'
 
 " requirement for some plugins
 Plugin 'Shougo/vimproc.vim'
@@ -50,10 +47,8 @@ Plugin 'Valloric/YouCompleteMe'
 " find in files
 Plugin 'dyng/ctrlsf.vim'
 
-" requirement for vim-notes
-Plugin 'xolox/vim-misc'
-
 " organize notes (:Note), search with :RecentNotes
+Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
 
 " All of your Plugins must be added before the following line
