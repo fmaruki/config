@@ -5,52 +5,33 @@ filetype off                  " required
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" plugin manager, like pathogen
+" let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 
-" search script, like grep, used by other plugins
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
 Plugin 'mileszs/ack.vim'
-
-" easy way to find files, buffers, lines
 Plugin 'kien/ctrlp.vim'
-
-" auto-closes parentheses and quotes
-Plugin 'Raimondi/delimitMate'
-
-" autocomplete for javascript with context
+" Plugin 'Raimondi/delimitMate'
 Plugin 'marijnh/tern_for_vim'
-
-" comments shortcut (gcc)
 Plugin 'ope/vim-commentary'
-
-" creates an yank ring (A-p/A-P), not obstrusive as easyClip
+"Plugin 'svermeulen/vim-easyclip'
 Plugin 'maxbrunsfeld/vim-yankstack'
-
-" show git diff in side-ruler
 Plugin 'airblade/vim-gitgutter'
-
-" (C-A-f) to beautify javascript
 Plugin 'maksimr/vim-jsbeautify'
-
-" better visualization for json
 Plugin 'elzr/vim-json'
-
-" requirement for some plugins
 Plugin 'Shougo/vimproc.vim'
-
-" shows trailing whitespace, :FixWhitespace for cleaning
 Plugin 'bronson/vim-trailing-whitespace'
-
-" auto-complete, with docs for python (jedi)
 Plugin 'Valloric/YouCompleteMe'
-
-" find in files
 Plugin 'dyng/ctrlsf.vim'
-
-" organize notes (:Note), search with :RecentNotes
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-notes'
-
+Plugin 'severin-lemaignan/vim-minimap'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'tpope/vim-surround'
+" Plugin 'scrooloose/syntastic'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -62,41 +43,40 @@ filetype plugin indent on    " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
+"
+" see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
 
 " enable mouse in all modes
 set mouse=a
-
-" show line-numbers ruler
 set number
-
-" always show 3 lines above and below
 set scrolloff=3
-
-" tab config
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-" use system clipboard
 set clipboard=unnamedplus
-
-" don't need to save when chage buffer
 set hidden
-
-" incremental search, with optional case
 set ignorecase
 set smartcase
 set incsearch
+set ruler
+set laststatus=2
+set wildmenu
+highlight LineNr ctermbg=white ctermfg=black
+highlight StatusLine ctermbg=white ctermfg=blue
+au InsertEnter * hi StatusLine ctermbg=white ctermfg=green
+au InsertLeave * hi StatusLine ctermbg=white ctermfg=blue
+"set rulerformat=%f\ %y\ %=%m\ %{strftime('%a\ %e/%b/%Y\ %I:%M')}\ col%c\ %P
+set statusline=%<%f\ [%Y]\ %h%m%r%=%-25.(%{strftime('%a\ %e/%b/%Y\ %H:%M')}%)
+set statusline+=[%{len(filter(range(1,bufnr('%')),'buflisted(v:val)'))}/%{len(filter(range(1,bufnr('$')),'buflisted(v:val)'))}\ Buffers]\ col%c\ %P
 
-" change buffer shortcut
-nmap <C-Left> :bp<CR>
-nmap <C-Right> :bn<CR>
+" execute pathogen#infect()
+" syntax on
+" filetype plugin indent on
 
 
-" js-beautify key-bindings
+" js-beautify
 autocmd FileType javascript noremap <buffer>  <c-a-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-a-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-a-f> :call CssBeautify()<cr>
@@ -120,3 +100,9 @@ nnoremap <space>/ :CtrlPLine<CR>
 " ctrl-s-f
 nmap <C-F> <Plug>CtrlSFPrompt
 vmap <C-F> <Plug>CtrlSFVwordPath
+
+nmap <C-Left> :bp<CR>
+nmap <C-Right> :bn<CR>
+
+" syntastic
+let g:syntastic_python_checkers = ['pylint']
